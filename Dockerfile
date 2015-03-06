@@ -22,11 +22,14 @@ RUN apt-get --quiet update && \
     rabbitmq-plugins enable rabbitmq_mqtt && \
     rabbitmq-plugins enable rabbitmq_web_stomp && \
     rabbitmq-plugins list && \
-    echo '[{rabbit, [{loopback_users, []}]}].' > /etc/rabbitmq/rabbitmq.config && \
+    echo '[{rabbit, [{loopback_users, []}]}].' > /etc/rabbitmq/rabbitmq.config
 
 # Define environment variables so we can use external file system for persistence.
 ENV RABBITMQ_LOG_BASE /data/log
 ENV RABBITMQ_MNESIA_BASE /data/mnesia
+
+# export meta-data about this container
+ENV KURRON_RABBITMQ_VERSION Unknown
 
 # Define mount points.
 VOLUME ["/data/log", "/data/mnesia"]
