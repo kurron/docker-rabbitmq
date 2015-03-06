@@ -12,6 +12,7 @@ RUN apt-get --quiet update && \
     apt-get --quiet update && \
     apt-get --quiet --yes install rabbitmq-server && \
     apt-get clean && \
+    /usr/sbin/rabbitmq-server -detached  && \ 
     rabbitmq-plugins enable rabbitmq_management && \
     rabbitmq-plugins enable rabbitmq_consistent_hash_exchange && \
     rabbitmq-plugins enable rabbitmq_federation && \
